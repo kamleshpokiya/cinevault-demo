@@ -50,13 +50,15 @@ const Home: React.FC = () => {
     // Add more movies as needed
   ];
 
+  /* Group 52 */
+
   return (
-    <div className="p-[120px] bg-gray-900 min-h-screen">
-      {movies.length < 0 ? (
-        <div>
+    <div className="bg-background min-h-screen">
+      {movies.length > 0 ? (
+        <div className="p-[120px] min-h-screen">
           <div className="flex justify-between text-white">
             <div className="flex items-center gap-4">
-              <span>My movies</span>
+              <span className="max-w-[309px]">My movies</span>
               <CirclePlus />
             </div>
             <div>Logout</div>
@@ -75,18 +77,11 @@ const Home: React.FC = () => {
         </div>
       ) : (
         <div className="flex flex-col items-center h-screen justify-center text-center text-white">
-          <p className="text-2xl font-semibold mb-4">
+          <p className="text-[48px] font-semibold mb-4">
             Your movie list is empty
           </p>
           <div>
-            <SubmitButton
-              label="Submit"
-              variant="primary"
-            />
-            <SubmitButton
-              label="Submit"
-              variant="secondary"
-            />
+            <SubmitButton label="Add a new movie" variant="primary" />
           </div>
         </div>
       )}
