@@ -13,14 +13,14 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ onClick, label, variant = "
   const baseStyles = "h-[56px] px-[28px] py-[16px] text-white";
   const primaryStyles = "w-[179px] rounded-[10px] bg-[#2BD17E]";
   const secondaryStyles = "w-[167px] px-[55px] rounded-[10px] border border-[rgba(255,255,255,1)";
-
+  const custombtn = classbtn || "";
 
   const variantStyles = variant === "primary" ? primaryStyles : secondaryStyles;
 
   return (
     <button
       onClick={onClick}
-      className={`${baseStyles} ${variantStyles}`}
+      className={`${baseStyles} ${variantStyles} ${custombtn}`}
     >
       {label}
     </button>
