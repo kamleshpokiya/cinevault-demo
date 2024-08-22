@@ -20,17 +20,17 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
   const primaryStyles = "w-[179px] rounded-[10px] bg-[#2BD17E]";
   const secondaryStyles =
     "w-[167px] px-[55px] rounded-[10px] border border-[rgba(255,255,255,1)";
+  const custombtn = classbtn || "";
 
   const variantStyles = variant === "primary" ? primaryStyles : secondaryStyles;
 
   return (
-    <>
-      <div>
-        <button onClick={onClick} className={`${baseStyles} ${variantStyles}`}>
-          {label}
-        </button>
-      </div>
-    </>
+    <button
+      onClick={onClick}
+      className={`${baseStyles} ${variantStyles} ${custombtn}`}
+    >
+      {label}
+    </button>
   );
 };
 

@@ -2,48 +2,48 @@
 
 import SubmitButton from "@/Components/Button";
 import MovieCard from "@/Components/card";
-import { CirclePlus } from "lucide-react";
+import { CirclePlus, LogOut } from "lucide-react";
 import Link from "next/link";
 
 const Home: React.FC = () => {
   const movies = [
     {
-      imageUrl: "/path-to-image1.jpg",
+      imageUrl: "/demo.jpg",
       title: "Movie 1",
       year: "2021",
     },
     {
-      imageUrl: "/path-to-image2.jpg",
+      imageUrl: "/demo.jpg",
       title: "Movie 2",
       year: "2022",
     },
     {
-      imageUrl: "/path-to-image2.jpg",
+      imageUrl: "/demo.jpg",
       title: "Movie 2",
       year: "2022",
     },
     {
-      imageUrl: "/path-to-image2.jpg",
+      imageUrl: "/demo.jpg",
       title: "Movie 2",
       year: "2022",
     },
     {
-      imageUrl: "/path-to-image2.jpg",
+      imageUrl: "/demo.jpg",
       title: "Movie 2",
       year: "2022",
     },
     {
-      imageUrl: "/path-to-image2.jpg",
+      imageUrl: "/demo.jpg",
       title: "Movie 2",
       year: "2022",
     },
     {
-      imageUrl: "/path-to-image2.jpg",
+      imageUrl: "/demo.jpg",
       title: "Movie 2",
       year: "2022",
     },
     {
-      imageUrl: "/path-to-image2.jpg",
+      imageUrl: "/demo.jpg",
       title: "Movie 2",
       year: "2022",
     },
@@ -53,19 +53,22 @@ const Home: React.FC = () => {
   /* Group 52 */
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className=" max-w-[1440px] mx-auto  ">
       {movies.length > 0 ? (
-        <div className="p-[120px] min-h-screen">
+        <div className="p-[120px] min-h-screen ">
           <div className="flex justify-between text-white">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 font-extrabold   text-5xl">
               <span className="max-w-[309px]">My movies</span>
-              <CirclePlus />
+              <CirclePlus size={32} />
             </div>
-            <div>Logout</div>
+
+            <div className="flex items-center gap-4 ">
+              Logout <LogOut size={24} />
+            </div>
           </div>
-          <div className=" py-[120px] grid grid-cols-12 gap-6 ">
+          <div className=" py-[120px]  grid grid-cols-4 gap-x-6 gap-y-6">
             {movies.map((movie, index) => (
-              <div key={index} className="max-w-[282px] col-span-3">
+              <div key={index} className="justify-between ">
                 <MovieCard
                   imageUrl={movie.imageUrl}
                   title={movie.title}
@@ -73,6 +76,22 @@ const Home: React.FC = () => {
                 />
               </div>
             ))}
+          </div>
+          <div>
+            <div className="text-white flex items-center justify-center">
+              <span>Prev</span>
+              <SubmitButton
+                label="1"
+                variant="primary"
+                classbtn="w-[32px] px-[0px] py-[0px] rounded-sm h-[32px] mr-2 ml-2 "
+              />
+              <SubmitButton
+                label="2"
+                variant="primary"
+                classbtn="w-[32px] px-[0px] py-[0px] rounded-sm h-[32px] mr-2 bg-[#0f2c39]"
+              />
+              <span>Next</span>
+            </div>
           </div>
         </div>
       ) : (
