@@ -3,8 +3,14 @@ import { Download } from "lucide-react";
 import React from "react";
 import { useDropzone } from "react-dropzone";
 
-const Dropzone: React.FC = () => {
-  const { getRootProps, getInputProps, isDragActive } = useDropzone();
+interface DropzoneProps {
+  onDrop: (acceptedFiles: File[]) => void;
+}
+
+const Dropzone: React.FC<DropzoneProps> = ({ onDrop }) => {
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+  });
 
   return (
     <div

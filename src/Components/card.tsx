@@ -20,6 +20,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ imageUrl, title, year }) => {
           className="md:p-2 rounded-t-2xl md:rounded-2xl w-[180px] h-[246px] md:w-[266px] md:h-[400px]"
         />
       </div>
+
       <div className="p-4 text-white">
         <h2 className="text-xl font-semibold">{title}</h2>
         <p className="text-sm pt-4">{year}</p>
