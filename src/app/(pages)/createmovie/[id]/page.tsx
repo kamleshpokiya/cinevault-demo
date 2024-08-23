@@ -38,15 +38,13 @@ const page = ({ params }: { params: { id: string } }) => {
               placeholder="Title"
               className="py-[10px] px-4 rounded-lg w-[362px] h-[45px] bg-inputColor text-white focus:outline-none"
             />
-
             <input
               type="number"
               min="1900"
               max="2050"
               step="1"
-              value="2024"
               placeholder="Year"
-              className="py-[10px] px-4 rounded-lg w-[216px] h-[45px] bg-inputColor text-white focus:outline-none"
+              className="py-[10px] px-4 rounded-lg w-[216px] h-[45px] bg-inputColor text-white focus:outline-none appearance-none"
             />
           </div>
           <div className="mt-10 sm:mt-[64px] space-x-4">
