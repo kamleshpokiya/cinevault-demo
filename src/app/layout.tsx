@@ -6,6 +6,7 @@ import AuthProvider from "@/utils/SessionProvider";
 import SmallFooter from "@/Components/SmallFooter";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Script from "next/script";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <Script src="https://cdn.tailwindcss.com"></Script>
 
         <body className={montserrat.className}>
           <ToastContainer />
