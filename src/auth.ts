@@ -2,7 +2,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import prisma from "./prisma";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { saltAndHashPassword } from "./helpers/helper";
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -53,7 +53,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           const isMatch = await bcrypt.compare(
             credentials.password as string,
-            user.hashedPassword
+            user.hashedPassword as string
           );
           console.log("hello 4 ");
 

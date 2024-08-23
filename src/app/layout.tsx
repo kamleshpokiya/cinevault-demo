@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Footer from "@/Components/WaveFooter";
+import AuthProvider from "@/utils/SessionProvider";
+import SmallFooter from "@/Components/SmallFooter";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -16,13 +18,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={montserrat.className}>
-        {children}
+    <AuthProvider>
+      <html lang="en">
+        <body className={montserrat.className}>
+          {children}
 
-        <Footer />
-        <footer></footer>
-      </body>
-    </html>
+          <div className="hidden sm:block">
+            <Footer />
+          </div>
+          <div className="sm:hidden">
+            <SmallFooter />
+          </div>
+          <footer></footer>
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

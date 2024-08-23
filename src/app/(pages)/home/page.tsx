@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
+import { logout } from "@/actions/auth";
 import { getMovies } from "@/actions/movies";
 import SubmitButton from "@/Components/Button";
 import MovieCard from "@/Components/card";
+import LogoutButton from "@/Components/LogoutButton";
 import { CirclePlus, LogOut } from "lucide-react";
 import Link from "next/link";
 
@@ -52,12 +54,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Logout and Icon */}
-            <div className="flex items-center gap-2 md:gap-4 text-xl md:text-2xl">
-              <Link href={"/login"} className="flex items-center gap-4 ">
-                <span className="hidden md:block">Logout</span>{" "}
-                <LogOut size={24} />
-              </Link>
-            </div>
+            <LogoutButton />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {allmovies.movies.map((movie, index) => (
