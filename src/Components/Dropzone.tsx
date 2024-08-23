@@ -33,7 +33,11 @@ const Dropzone: React.FC<DropzoneProps> = ({ onDrop }) => {
     >
       <input {...getInputProps()} />
       {image ? (
-        <img src={image as string} alt="Selected" className="max-w-full max-h-full object-cover" />
+        <img
+          src={image as string}
+          alt="Selected"
+          className="max-w-full max-h-full object-cover"
+        />
       ) : (
         <>
           <Download size={16} />
