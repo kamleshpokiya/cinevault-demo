@@ -91,7 +91,7 @@ const AddMovieData = ({ data, id }: { data: any; id: string }) => {
               className="py-[10px] px-4 rounded-lg w-[216px] h-[45px] bg-inputColor text-white focus:outline-none appearance-none"
             />
           </div>
-          <div className="mt-10 sm:mt-[64px] space-x-">
+          <div className="mt-10 sm:mt-[64px] space-x-4">
             <SubmitButton
               label="Cancel"
               variant="secondary"
