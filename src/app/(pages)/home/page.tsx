@@ -159,7 +159,7 @@ const Home: React.FC = async () => {
               <SubmitButton
                 label="1"
                 variant="primary"
-                classbtn="w-[32px] px-[10px] !py-[0px] rounded-sm !h-[32px] mr-2 ml-2 "
+                classbtn="w-[32px] !px-[10px] !py-[0px] rounded-sm !h-[32px] mr-2 ml-2 "
               />
               <SubmitButton
                 label="2"
