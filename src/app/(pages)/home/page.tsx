@@ -55,6 +55,7 @@ const Home = async ({ searchParams }: { searchParams: { page?: string } }) => {
               {Array.from({ length: allmovies.pagination.totalPages }).map(
                 (_, page) => (
                   <PaginationButtons
+                    key={page}
                     currentPage={allmovies.pagination.currentPage}
                     label={(page + 1).toString()}
                   />
