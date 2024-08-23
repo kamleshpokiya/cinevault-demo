@@ -118,6 +118,7 @@ const AddMovieData = ({ data, id }: { data: any; id: string }) => {
               variant="secondary"
               classbtn="!px-[60px] sm:!px-[55px] !py-[16px] !h-[unset] !w-[unset]"
             />
+            <span></span>
             <SubmitButton
               label="Submit"
               variant="primary"
