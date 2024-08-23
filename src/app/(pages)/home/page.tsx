@@ -3,6 +3,7 @@
 import SubmitButton from "@/Components/Button";
 import MovieCard from "@/Components/card";
 import { CirclePlus, LogOut } from "lucide-react";
+import Link from "next/link";
 
 const Home: React.FC = () => {
   const movies = [
@@ -127,21 +128,22 @@ const Home: React.FC = () => {
             {/* "My movies" and "+" button */}
             <div className="flex items-center gap-2 md:gap-4 font-extrabold text-3xl md:text-5xl">
               <span>My movies</span>
-              <CirclePlus size={32} />
+              <Link href="/createmovie/create">
+                <CirclePlus size={32} />
+              </Link>
             </div>
 
             {/* Logout and Icon */}
             <div className="flex items-center gap-2 md:gap-4 text-xl md:text-2xl">
               <span className="hidden md:inline">Logout</span>
-              <LogOut size={24} />
+              <Link href={"/login"} className="flex items-center gap-4 ">
+                Logout <LogOut size={24} />
+              </Link>
             </div>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {movies.map((movie, index) => (
-              <div
-                key={index}
-                className="w-full h-full sm:h-auto"
-              >
+              <div key={index} className="w-full h-full sm:h-auto">
                 <MovieCard
                   imageUrl={movie.imageUrl}
                   title={movie.title}
