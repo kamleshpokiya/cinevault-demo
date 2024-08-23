@@ -2,10 +2,11 @@
 import React, { useState } from "react";
 import Dropzone from "./Dropzone";
 import SubmitButton from "./Button";
+import { addMovie } from "@/actions/movies";
 
 interface MovieData {
   title: string;
-  year: string;
+  year: number;
   image: File | null;
 }
 
@@ -31,9 +32,29 @@ const AddMovieData = ({ data, id }: { data: any; id: string }) => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Submitted Data:", movieData);
+    const formData = new FormData();
+    formData.append("title", movieData.title);
+    formData.append("year", movieData.year.toString());
+
+    if (movieData.image) {
+      formData.append("image", movieData.image);
+    }
+
+    console.log("Submitted FormData:", formData);
+
+    // Sending FormData to the server
+    try {
+      const response = await addMovie(formData);
+      console.log("react response: ", response);
+
+      // Handle success (e.g., show a success message, redirect, etc.)
+    } catch (error) {
+      console.error("Failed to submit movie:", error);
+      // Handle error (e.g., show an error message)
+    }
   };
 
   return (

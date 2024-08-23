@@ -1,6 +1,5 @@
-import AddMovieData from "@/Components/AddMovieData";
 import React from "react";
-
+import AddMovieData from "@/Components/AddMovieData";
 const data = {
   movies: [
     {

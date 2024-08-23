@@ -5,15 +5,11 @@ import { writeFile } from "fs/promises";
 import { join } from "path";
 import { v4 as uuidv4 } from "uuid"; // For generating unique filenames
 
-interface AddMovieInput {
-  title: string;
-  year: number;
-  image: File; // File object
-}
-
-export const addMovie = async (data: AddMovieInput) => {
+export const addMovie = async (formData: FormData) => {
   try {
-    const { title, year, image } = data;
+    const title = formData.get("title") as string;
+    const year = formData.get("year") as string;
+    const image = formData.get("image") as File;
 
     // Validate inputs
     if (!title || !year || !image) {
@@ -33,7 +29,7 @@ export const addMovie = async (data: AddMovieInput) => {
     const newMovie = await prisma.movie.create({
       data: {
         title,
-        year,
+        year: parseInt(year, 10), // Parse the year as an integer
         image: `/uploads/${fileName}`, // Store relative path
       },
     });
