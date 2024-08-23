@@ -1,14 +1,16 @@
 // components/MovieCard.tsx
 
 import Image from "next/image";
+import Link from "next/link";
 
 interface MovieCardProps {
   imageUrl: string;
   title: string;
   year: string;
+  id: number;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ imageUrl, title, year }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ imageUrl, title, year, id }) => {
   return (
     <div className=" md:h-[504px] bg-[#092c39] rounded-lg overflow-hidden shadow-lg">
       <div className="relative h-[246px] md:h-[400px] ">
@@ -21,9 +23,14 @@ const MovieCard: React.FC<MovieCardProps> = ({ imageUrl, title, year }) => {
         />
       </div>
 
-      <div className="p-4 text-white">
-        <h2 className="text-xl font-semibold">{title}</h2>
-        <p className="text-sm pt-4">{year}</p>
+      <div className="p-4 text-white flex justify-between">
+        <div>
+          <h2 className="text-xl font-semibold">{title}</h2>
+          <p className="text-sm pt-4">{year}</p>
+        </div>
+        <div>
+          <Link href={`/createmovie/${id}`}>edit</Link>
+        </div>
       </div>
     </div>
   );

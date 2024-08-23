@@ -1,5 +1,6 @@
 import React from "react";
 import AddMovieData from "@/Components/AddMovieData";
+import { updateMovie } from "@/actions/movies";
 const data = {
   movies: [
     {
@@ -24,7 +25,8 @@ const data = {
 };
 
 const page = async ({ params }: { params: { id: string } }) => {
-  // const resposnse = await getData(params.id);
+  // console.log("dadafssdf", params);
+  // const resposnse = await updateMovie(params);
   return <AddMovieData data={data} id={data.movies[0].id} />;
 };
 

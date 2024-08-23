@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import Dropzone from "./Dropzone";
 import SubmitButton from "./Button";
 import { addMovie } from "@/actions/movies";
-
+import { useRouter } from "next/navigation";
+import CancleBtn from "./CancleBtn";
 interface MovieData {
   title: string;
   year: number;
@@ -11,6 +12,7 @@ interface MovieData {
 }
 
 const AddMovieData = ({ data, id }: { data: any; id: string }) => {
+  const router = useRouter();
   const [movieData, setMovieData] = useState<MovieData>({
     title: data.title || "",
     year: data.year || "",
@@ -34,7 +36,7 @@ const AddMovieData = ({ data, id }: { data: any; id: string }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitted Data:", movieData);
+
     const formData = new FormData();
     formData.append("title", movieData.title);
     formData.append("year", movieData.year.toString());
@@ -44,7 +46,7 @@ const AddMovieData = ({ data, id }: { data: any; id: string }) => {
     }
 
     console.log("Submitted FormData:", formData);
-
+    router.push("/home");
     // Sending FormData to the server
     try {
       const response = await addMovie(formData);
@@ -113,11 +115,12 @@ const AddMovieData = ({ data, id }: { data: any; id: string }) => {
             />
           </div>
           <div className="mt-10 sm:mt-[64px] space-x-4">
-            <SubmitButton
+            <CancleBtn
               label="Cancel"
               variant="secondary"
               classbtn="!px-[60px] sm:!px-[55px] !py-[16px] !h-[unset] !w-[unset]"
             />
+
             <span></span>
             <SubmitButton
               label="Submit"

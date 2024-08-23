@@ -3,7 +3,6 @@ import { Download } from "lucide-react";
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-
 interface DropzoneProps {
   onDrop: (acceptedFiles: File[]) => void;
 }
