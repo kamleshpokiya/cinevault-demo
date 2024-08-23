@@ -5,10 +5,10 @@ const Footer = () => {
   return (
     <footer className="fixed bottom-0 w-full">
       <svg
-        width="100%"
         viewBox="0 0 1440 111"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+       
       >
         <path
           fillRule="evenodd"
