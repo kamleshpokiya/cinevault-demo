@@ -21,6 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
+        <script src="https://cdn.tailwindcss.com"></script>
+
         <body className={montserrat.className}>
           <ToastContainer />
           {children}
