@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Footer from "@/Components/WaveFooter";
+import SmallFooter from "@/Components/SmallFooter";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -20,7 +21,12 @@ export default function RootLayout({
       <body className={montserrat.className}>
         {children}
 
+        <div className="hidden sm:block">
         <Footer />
+      </div>
+      <div className="sm:hidden">
+        <SmallFooter />
+      </div>
         <footer></footer>
       </body>
     </html>
