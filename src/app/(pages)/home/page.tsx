@@ -54,7 +54,7 @@ const Home: React.FC = () => {
 
   return (
     <div className=" max-w-[1440px] mx-auto">
-      {movies.length < 0 ? (
+      {movies.length > 0 ? (
         <div className="p-[120px] z-40 relative min-h-screen ">
           <div className="flex justify-between text-white">
             <div className="flex items-center gap-4 font-extrabold   text-5xl">
@@ -83,12 +83,12 @@ const Home: React.FC = () => {
               <SubmitButton
                 label="1"
                 variant="primary"
-                classbtn="w-[32px] px-[0px] py-[0px] rounded-sm h-[32px] mr-2 ml-2 "
+                classbtn="w-[32px] px-[10px] !py-[0px] rounded-sm !h-[32px] mr-2 ml-2 "
               />
               <SubmitButton
                 label="2"
                 variant="secondary"
-                classbtn="w-[32px] !px-[10px] !py-[0px] rounded-sm h-[32px] mr-2 bg-[#0f2c39]"
+                classbtn="w-[32px] !px-[10px] !py-[0px] rounded-sm !h-[32px] mr-2 bg-[#0f2c39] !border-transparent"
               />
               <span>Next</span>
             </div>
