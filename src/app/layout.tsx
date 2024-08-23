@@ -4,7 +4,8 @@ import "./globals.css";
 import Footer from "@/Components/WaveFooter";
 import AuthProvider from "@/utils/SessionProvider";
 import SmallFooter from "@/Components/SmallFooter";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,9 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AuthProvider>
-      <html lang="en">
+    <html lang="en">
+      <AuthProvider>
         <body className={montserrat.className}>
+          <ToastContainer />
           {children}
 
           <div className="hidden sm:block">
@@ -31,7 +33,7 @@ export default function RootLayout({
           </div>
           <footer></footer>
         </body>
-      </html>
-    </AuthProvider>
+      </AuthProvider>
+    </html>
   );
 }

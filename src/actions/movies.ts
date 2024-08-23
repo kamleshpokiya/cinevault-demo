@@ -4,6 +4,8 @@ import prisma from "@/prisma"; // Adjust the import path based on your project s
 import { writeFile, unlink } from "fs/promises";
 import { join } from "path";
 import { v4 as uuidv4 } from "uuid"; // For generating unique filenames
+import { MoviesResponse } from "./types";
+import { revalidatePath } from "next/cache";
 
 export const addMovie = async (formData: FormData) => {
   try {
@@ -42,6 +44,8 @@ export const addMovie = async (formData: FormData) => {
 };
 
 export const updateMovie = async (formData: FormData) => {
+  console.log("hell -0 ", formData);
+
   try {
     const id = formData.get("id") as string;
     const title = formData.get("title") as string | null;
@@ -50,20 +54,27 @@ export const updateMovie = async (formData: FormData) => {
 
     // Validate inputs
     if (!id) {
+      console.log("hell -1 ");
+
       throw new Error("Movie ID is required.");
     }
+    console.log("hell -2 ");
 
     // Retrieve current movie to get the old image path
     const existingMovie = await prisma.movie.findUnique({
       where: { id },
     });
+    console.log("hell -3 ", existingMovie);
 
     if (!existingMovie) {
+      console.log("hell -4 ");
+
       throw new Error("Movie not found.");
     }
 
     // Prepare update data
     const updateData: { title?: string; year?: number; image?: string } = {};
+    console.log("hell -5 ");
 
     if (title) {
       updateData.title = title;
@@ -94,13 +105,14 @@ export const updateMovie = async (formData: FormData) => {
         }
       }
     }
+    console.log("hell -6 ");
 
     // Update the movie in the database
     const updatedMovie = await prisma.movie.update({
       where: { id },
       data: updateData,
     });
-
+    revalidatePath("/home");
     return updatedMovie;
   } catch (error) {
     console.error("Failed to update movie:", error);
@@ -113,7 +125,10 @@ interface PaginationParams {
   limit: number;
 }
 
-export const getMovies = async ({ page, limit }: PaginationParams) => {
+export const getMovies = async ({
+  page,
+  limit,
+}: PaginationParams): Promise<MoviesResponse> => {
   try {
     // Calculate the offset
     const offset = (page - 1) * limit;
@@ -134,6 +149,7 @@ export const getMovies = async ({ page, limit }: PaginationParams) => {
     const totalPages = Math.ceil(totalCount / limit);
 
     return {
+      status: true,
       movies,
       pagination: {
         currentPage: page,
@@ -143,6 +159,35 @@ export const getMovies = async ({ page, limit }: PaginationParams) => {
     };
   } catch (error) {
     console.error("Failed to get movies:", error);
-    throw new Error("Failed to get movies.");
+    return {
+      status: false,
+      error: "Failed to get movies.",
+    };
+  }
+};
+
+export const getMovieById = async (id: string) => {
+  try {
+    // Validate ID
+    if (!id) {
+      return { status: false, error: "Plese provide a valid ID" };
+    }
+
+    // Retrieve the movie from the database
+    const movie = await prisma.movie.findUnique({
+      where: { id },
+    });
+
+    // Handle case where movie is not found
+    if (!movie) {
+      return { status: false, error: "Movie not found" };
+    }
+    return { status: true, movie };
+  } catch (error) {
+    console.error("Failed to get movie by ID:", error);
+    return {
+      status: false,
+      error: "Something went wrong. Please try again later!",
+    };
   }
 };

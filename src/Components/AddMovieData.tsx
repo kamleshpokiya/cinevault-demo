@@ -2,22 +2,32 @@
 import React, { useState } from "react";
 import Dropzone from "./Dropzone";
 import SubmitButton from "./Button";
-import { addMovie } from "@/actions/movies";
+import { addMovie, updateMovie } from "@/actions/movies";
 import { useRouter } from "next/navigation";
 import CancleBtn from "./CancleBtn";
+import { Movie } from "@/actions/types";
+import { toast } from "react-toastify";
 interface MovieData {
   title: string;
   year: number;
-  image: File | null;
+  image: File | string | null;
 }
 
-const AddMovieData = ({ data, id }: { data: any; id: string }) => {
+const AddMovieData = ({ data }: { data?: Movie }) => {
   const router = useRouter();
-  const [movieData, setMovieData] = useState<MovieData>({
-    title: data.title || "",
-    year: data.year || "",
-    image: null,
-  });
+  const [movieData, setMovieData] = useState<MovieData>(
+    data
+      ? {
+          title: data.title,
+          year: data.year,
+          image: data.image,
+        }
+      : {
+          title: "",
+          year: 0,
+          image: null,
+        }
+  );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -42,27 +52,39 @@ const AddMovieData = ({ data, id }: { data: any; id: string }) => {
     formData.append("year", movieData.year.toString());
 
     if (movieData.image) {
-      formData.append("image", movieData.image);
+      formData.append("image", movieData.image as File);
     }
-
-    console.log("Submitted FormData:", formData);
-    router.push("/home");
+    if(data){
+      formData.append("id", data.id);
+    }
     // Sending FormData to the server
     try {
-      const response = await addMovie(formData);
-      console.log("react response: ", response);
-
-      // Handle success (e.g., show a success message, redirect, etc.)
+      let response = null;
+      if (data) {
+        response = await updateMovie(formData);
+      } else {
+        response = await addMovie(formData);
+      }
+      if (response === null) {
+        toast.error(
+          `${data ? "Failed to update movie" : "Failed to create movie"}`
+        );
+        return;
+      } else {
+        router.push("/home");
+      }
     } catch (error) {
       console.error("Failed to submit movie:", error);
-      // Handle error (e.g., show an error message)
+      toast.error(
+        `${data ? "Failed to update movie" : "Failed to create movie"}`
+      );
     }
   };
 
   return (
     <div className="max-w-[1440px] px-[24px] py-[60px] xl:px-[120px] xl:py-[120px] mx-auto">
       <h1 className="text-white font-semibold text-[32px] lg:text-[48px]">
-        {id === "Edit" ? "Edit movie" : "Create a new movie"}
+        {data ? "Edit movie" : "Create a new movie"}
       </h1>
       <form onSubmit={handleSubmit} className="md:grid grid-cols-12 gap-6">
         <div className="col-span-6">
@@ -88,7 +110,7 @@ const AddMovieData = ({ data, id }: { data: any; id: string }) => {
                 className="py-[10px] px-4 rounded-lg lg:w-[216px] h-[45px] bg-inputColor text-white focus:outline-none"
               />
             </div>
-            <Dropzone onDrop={handleDrop} />
+            <Dropzone onDrop={handleDrop} initImage={movieData.image} />
           </div>
         </div>
 
@@ -118,6 +140,7 @@ const AddMovieData = ({ data, id }: { data: any; id: string }) => {
             <CancleBtn
               label="Cancel"
               variant="secondary"
+              type="button"
               classbtn="!px-[60px] md:!px-[53px] lg:!px-[55px] !py-[16px] !h-[unset] !w-[unset]"
             />
 

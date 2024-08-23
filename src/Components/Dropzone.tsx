@@ -1,25 +1,23 @@
 "use client";
 import { Download } from "lucide-react";
+import Image from "next/image";
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 interface DropzoneProps {
   onDrop: (acceptedFiles: File[]) => void;
+  initImage: string | File | null;
 }
 
-const Dropzone: React.FC<DropzoneProps> = ({ onDrop }) => {
-  const [image, setImage] = useState<string | ArrayBuffer | null>(null);
+const Dropzone: React.FC<DropzoneProps> = ({ onDrop, initImage }) => {
+  const [image, setImage] = useState<string | File | null>(initImage || null);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {
       onDrop(acceptedFiles);
       const file = acceptedFiles[0];
       if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setImage(reader.result);
-        };
-        reader.readAsDataURL(file);
+        setImage(file);
       }
     },
   });
@@ -33,10 +31,12 @@ const Dropzone: React.FC<DropzoneProps> = ({ onDrop }) => {
     >
       <input {...getInputProps()} />
       {image ? (
-        <img
-          src={image as string}
+        <Image
+          src={typeof image === "string" ? `${image}` : URL.createObjectURL(image)}
           alt="Selected"
           className="max-w-full max-h-full object-cover"
+          width={473}
+          height={504}
         />
       ) : (
         <>

@@ -1,13 +1,14 @@
 // components/MovieCard.tsx
 
+import { Edit } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 interface MovieCardProps {
   imageUrl: string;
   title: string;
-  year: string;
-  id: number;
+  year: number;
+  id: string;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ imageUrl, title, year, id }) => {
@@ -29,7 +30,12 @@ const MovieCard: React.FC<MovieCardProps> = ({ imageUrl, title, year, id }) => {
           <p className="text-sm pt-4">{year}</p>
         </div>
         <div>
-          <Link href={`/createmovie/${id}`}>edit</Link>
+          <Link
+            href={`/edit/${id}`}
+            className=""
+          >
+            <Edit />
+          </Link>
         </div>
       </div>
     </div>

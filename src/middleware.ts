@@ -6,6 +6,8 @@ export default async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   if (session === null && pathname !== "/login") {
     return NextResponse.redirect(new URL("/login", req.url));
+  } else if (session && pathname === "/login") {
+    return NextResponse.redirect(new URL("/home", req.url));
   } else if (pathname === "/") {
     return NextResponse.redirect(new URL("/home", req.url));
   } else {

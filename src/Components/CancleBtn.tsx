@@ -7,6 +7,7 @@ interface SubmitButtonProps {
   label: string;
   variant?: "primary" | "secondary"; // Adding variant prop
   classbtn?: string;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({
@@ -14,6 +15,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
   label,
   variant = "primary",
   classbtn,
+  type,
 }) => {
   const history = useRouter(); // Initialize useHistory
 
@@ -35,6 +37,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
 
   return (
     <button
+      type={type}
       onClick={handleClick} // Use handleClick for the onClick event
       className={`${baseStyles} ${variantStyles} ${custombtn}`}
     >
