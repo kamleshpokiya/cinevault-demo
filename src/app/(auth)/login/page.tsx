@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Page = () => {
@@ -27,9 +28,9 @@ const Page = () => {
             <label>Remember me</label>
           </div>
 
-          <button className=" bg-primary text-white  w-[300px] h-[54px] pt-[15px] pr-[126px] pb-[15px] pl-[126px] rounded-lg">
+          <Link href="/home" className=" bg-primary text-white  w-[300px] h-[54px] pt-[15px] pr-[126px] pb-[15px] pl-[126px] rounded-lg">
             Login
-          </button>
+          </Link>
         </div>
       </div>
     </>

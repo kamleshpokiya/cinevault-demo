@@ -59,12 +59,14 @@ const Home: React.FC = () => {
           <div className="flex justify-between text-white">
             <div className="flex items-center gap-4 font-extrabold   text-5xl">
               <span className="max-w-[309px]">My movies</span>
-              <CirclePlus size={32} />
+              <Link href="/createmovie/create">
+                <CirclePlus size={32} />
+              </Link>
             </div>
 
-            <div className="flex items-center gap-4 ">
+            <Link href={"/login"} className="flex items-center gap-4 ">
               Logout <LogOut size={24} />
-            </div>
+            </Link>
           </div>
           <div className=" py-[120px]  grid grid-cols-4 gap-x-6 gap-y-6">
             {movies.map((movie, index) => (
