@@ -15,6 +15,12 @@ const data = {
       year: "2014",
       imagePath: "/images/interstellar.jpg",
     },
+    {
+      id: "2",
+      title: "Interstellar",
+      year: "2014",
+      imagePath: "/images/interstellar.jpg",
+    },
   ],
 };
 
