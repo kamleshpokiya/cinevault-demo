@@ -1,6 +1,5 @@
-import AddMovieData from "@/Components/AddMovieData";
 import React from "react";
-
+import AddMovieData from "@/Components/AddMovieData";
 const data = {
   movies: [
     {
@@ -8,6 +7,12 @@ const data = {
       title: "Inception",
       year: "2010",
       imagePath: "/images/inception.jpg",
+    },
+    {
+      id: "2",
+      title: "Interstellar",
+      year: "2014",
+      imagePath: "/images/interstellar.jpg",
     },
     {
       id: "2",

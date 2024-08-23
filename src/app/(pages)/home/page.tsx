@@ -135,9 +135,8 @@ const Home: React.FC = () => {
 
             {/* Logout and Icon */}
             <div className="flex items-center gap-2 md:gap-4 text-xl md:text-2xl">
-              <span className="hidden md:inline">Logout</span>
-              <Link href="/login">
-              <LogOut size={24} />
+              <Link href={"/login"} className="flex items-center gap-4 ">
+                <span className="hidden md:block">Logout</span> <LogOut size={24} />
               </Link>
             </div>
           </div>
@@ -159,12 +158,12 @@ const Home: React.FC = () => {
               <SubmitButton
                 label="1"
                 variant="primary"
-                classbtn="w-[32px] px-3 py-0 rounded-sm h-[32px] "
+                classbtn="w-[32px] px-[10px] !py-[0px] rounded-sm !h-[32px] mr-2 ml-2 "
               />
               <SubmitButton
                 label="2"
                 variant="secondary"
-                classbtn="w-[32px] px-3 py-0 rounded-sm h-[32px] bg-[#0f2c39] !border-transparent"
+                classbtn="w-[32px] !px-[10px] !py-[0px] rounded-sm !h-[32px] mr-2 bg-[#0f2c39] !border-transparent"
               />
               <span>Next</span>
             </div>

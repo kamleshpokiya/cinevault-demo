@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 const Footer = () => {
   return (
-    <footer className="fixed bottom-0 w-full">
+    <footer className="w-full">
       <svg
         viewBox="0 0 1440 111"
         fill="none"
