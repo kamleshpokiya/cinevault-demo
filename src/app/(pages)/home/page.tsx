@@ -136,8 +136,8 @@ const Home: React.FC = () => {
             {/* Logout and Icon */}
             <div className="flex items-center gap-2 md:gap-4 text-xl md:text-2xl">
               <span className="hidden md:inline">Logout</span>
-              <Link href={"/login"} className="flex items-center gap-4 ">
-                Logout <LogOut size={24} />
+              <Link href="/login">
+              <LogOut size={24} />
               </Link>
             </div>
           </div>
