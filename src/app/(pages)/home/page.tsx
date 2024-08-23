@@ -53,9 +53,9 @@ const Home: React.FC = () => {
   /* Group 52 */
 
   return (
-    <div className=" max-w-[1440px] mx-auto  ">
-      {movies.length > 0 ? (
-        <div className="p-[120px] min-h-screen ">
+    <div className=" max-w-[1440px] mx-auto">
+      {movies.length < 0 ? (
+        <div className="p-[120px] z-40 relative min-h-screen ">
           <div className="flex justify-between text-white">
             <div className="flex items-center gap-4 font-extrabold   text-5xl">
               <span className="max-w-[309px]">My movies</span>
@@ -87,8 +87,8 @@ const Home: React.FC = () => {
               />
               <SubmitButton
                 label="2"
-                variant="primary"
-                classbtn="w-[32px] px-[0px] py-[0px] rounded-sm h-[32px] mr-2 bg-[#0f2c39]"
+                variant="secondary"
+                classbtn="w-[32px] !px-[10px] !py-[0px] rounded-sm h-[32px] mr-2 bg-[#0f2c39]"
               />
               <span>Next</span>
             </div>

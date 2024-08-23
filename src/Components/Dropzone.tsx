@@ -8,7 +8,7 @@ const Dropzone: React.FC = () => {
   return (
     <div
       {...getRootProps()}
-      className={`flex justify-center items-center max-w-[473px] max-h-[504px] h-[504px] border-2 border-dashed rounded-md cursor-pointer mt-64 ml-40 transition-all duration-200 ${
+      className={`flex justify-center items-center max-w-[473px] max-h-[504px] h-[504px] border-2 border-dashed rounded-md cursor-pointer transition-all duration-200 ${
         isDragActive ? "border-blue-500" : "border-gray-300"
       }`}
     >
