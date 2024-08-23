@@ -1,11 +1,12 @@
 import { loginWithCreds } from "@/actions/auth";
+import Link from "next/link";
 import React from "react";
 
 const Page = () => {
   return (
     <>
       <form action={loginWithCreds}>
-        <div className="flex items-center justify-center min-h-screen">
+        <div className="flex relative z-30 items-center justify-center min-h-screen">
           <div className="p-6 rounded-lg w-[300px] h-[360px] flex flex-col items-center justify-center">
             <h2 className="text-[64px] font-semibold mb-4 text-white fw-[600]">
               Sign in
@@ -15,7 +16,7 @@ const Page = () => {
                 name="email"
                 type="text"
                 placeholder="Email"
-                className="p-2 rounded-lg w-[300px] h-[45px] bg-inputColor text-white"
+                className="p-2 rounded-lg w-[300px] h-[45px] bg-inputColor text-white focus:outline-none"
               />
             </div>
             <div className="mb-4">
@@ -23,11 +24,11 @@ const Page = () => {
                 name="password"
                 type="password"
                 placeholder="Password"
-                className="w-[300px] h-[45px] p-2 rounded-lg  bg-inputColor text-white"
+                className="w-[300px] h-[45px] p-2 rounded-lg  bg-inputColor text-white focus:outline-none"
               />
             </div>
             <div className="flex items-center mb-4 text-white">
-              <input type="checkbox" className="mr-2 bg-inputColor" />
+              <input type="checkbox" className="mr-2 cursor-pointer" />
               <label>Remember me</label>
             </div>
 
