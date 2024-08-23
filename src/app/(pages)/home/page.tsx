@@ -1,11 +1,12 @@
 // pages/index.tsx
 
+import { getMovies } from "@/actions/movies";
 import SubmitButton from "@/Components/Button";
 import MovieCard from "@/Components/card";
 import { CirclePlus, LogOut } from "lucide-react";
 import Link from "next/link";
 
-const Home: React.FC = () => {
+const Home: React.FC = async () => {
   const movies = [
     {
       imageUrl: "/demo.jpg",
@@ -119,6 +120,8 @@ const Home: React.FC = () => {
     },
     // Add more movies as needed
   ];
+  const allmovies = await getMovies({ page: 1, limit: 10 });
+  console.log("allmovies", allmovies);
 
   return (
     <div className="max-w-[1440px] mx-auto p-4 md:p-8  min-h-screen">
@@ -136,7 +139,8 @@ const Home: React.FC = () => {
             {/* Logout and Icon */}
             <div className="flex items-center gap-2 md:gap-4 text-xl md:text-2xl">
               <Link href={"/login"} className="flex items-center gap-4 ">
-                <span className="hidden md:block">Logout</span> <LogOut size={24} />
+                <span className="hidden md:block">Logout</span>{" "}
+                <LogOut size={24} />
               </Link>
             </div>
           </div>
