@@ -20,7 +20,7 @@ const data = {
 
 const page = async ({ params }: { params: { id: string } }) => {
   // const resposnse = await getData(params.id);
-  return <AddMovieData data={data} id={params.id} />;
+  return <AddMovieData data={data} id={data.movies[0].id} />;
 };
 
 export default page;
