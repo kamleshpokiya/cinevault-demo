@@ -10,14 +10,14 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ imageUrl, title, year }) => {
   return (
-    <div className=" h-[504px] bg-[#092c39] rounded-lg overflow-hidden shadow-lg">
-      <div className="relative h-[400px] ">
+    <div className=" md:h-[504px] bg-[#092c39] rounded-lg overflow-hidden shadow-lg">
+      <div className="relative h-[246px] md:h-[400px] ">
         <Image
           src={imageUrl}
           alt={title}
           layout="fill"
           objectFit="cover"
-          className="p-2 rounded-2xl w-[266px] h-[400px]"
+          className="md:p-2 rounded-t-2xl md:rounded-2xl w-[180px] h-[246px] md:w-[266px] md:h-[400px]"
         />
       </div>
       <div className="p-4 text-white">
