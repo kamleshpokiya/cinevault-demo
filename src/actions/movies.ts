@@ -20,7 +20,7 @@ export const addMovie = async (formData: FormData) => {
 
     // Convert image to base64 string
     const buffer = Buffer.from(await image.arrayBuffer());
-    const base64Image = buffer.toString("base64");
+    const base64Image = "data:image/png;base64, " + buffer.toString("base64");
 
     // Store the base64 image and other data in the database
     const newMovie = await prisma.movie.create({
@@ -50,7 +50,6 @@ export const updateMovie = async (formData: FormData) => {
     // Validate inputs
     if (!id) {
       console.log("hell -1 ");
-
       throw new Error("Movie ID is required.");
     }
     console.log("hell -2 ");
@@ -63,7 +62,6 @@ export const updateMovie = async (formData: FormData) => {
 
     if (!existingMovie) {
       console.log("hell -4 ");
-
       throw new Error("Movie not found.");
     }
 
@@ -78,27 +76,12 @@ export const updateMovie = async (formData: FormData) => {
       updateData.year = parseInt(year, 10); // Parse the year as an integer
     }
     if (image) {
-      // Generate a unique filename
-      const fileExtension = image.name.split(".").pop();
-      const fileName = `${uuidv4()}.${fileExtension}`;
-      const filePath = join(process.cwd(), "public", "uploads", fileName);
-
-      // Save the new image file to the server
+      // Convert image to base64 string
       const buffer = Buffer.from(await image.arrayBuffer());
-      await writeFile(filePath, buffer);
+      const base64Image = "data:image/png;base64, " + buffer.toString("base64");
 
-      // Update the image path
-      updateData.image = `/uploads/${fileName}`;
-
-      // Remove the old image file from the server
-      if (existingMovie.image) {
-        const oldImagePath = join(process.cwd(), "public", existingMovie.image);
-        try {
-          await unlink(oldImagePath);
-        } catch (error) {
-          console.error("Failed to delete old image:", error);
-        }
-      }
+      // Update the image in the database
+      updateData.image = base64Image;
     }
     console.log("hell -6 ");
 
@@ -107,14 +90,16 @@ export const updateMovie = async (formData: FormData) => {
       where: { id },
       data: updateData,
     });
-    revalidatePath("/home");
+
+    // Optionally, trigger any necessary revalidation
+    // revalidatePath("/home");
+
     return updatedMovie;
   } catch (error) {
     console.error("Failed to update movie:", error);
     throw new Error("Failed to update movie.");
   }
 };
-
 interface PaginationParams {
   page: number;
   limit: number;

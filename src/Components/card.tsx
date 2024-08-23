@@ -22,6 +22,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ imageUrl, title, year, id }) => {
           objectFit="cover"
           className="md:p-2 rounded-t-2xl md:rounded-2xl w-[180px] h-[246px] md:w-[266px] md:h-[400px]"
         /> */}
+
+        
         <img
           src={imageUrl}
           alt=""
