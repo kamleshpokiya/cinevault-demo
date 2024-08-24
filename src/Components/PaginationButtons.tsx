@@ -36,6 +36,7 @@ export const PrevPageButton = ({ pagination }: { pagination: Pagination }) => {
       router.push(`?page=${page}`);
     }
   };
+  
   return (
     <button
       className={`
@@ -44,7 +45,7 @@ export const PrevPageButton = ({ pagination }: { pagination: Pagination }) => {
             ? "opacity-50 cursor-not-allowed"
             : "opacity-100"
         }`}
-      disabled={pagination.currentPage === pagination.totalPages}
+      disabled={pagination.currentPage === 1} // Disable if on the first page
       onClick={handlePageChange}
     >
       Prev
