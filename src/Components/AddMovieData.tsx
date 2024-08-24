@@ -15,6 +15,7 @@ interface MovieData {
 
 const AddMovieData = ({ data }: { data?: Movie }) => {
   const router = useRouter();
+  const [submit, setsubmit] = useState(false);
   const [movieData, setMovieData] = useState<MovieData>(
     data
       ? {
@@ -46,6 +47,7 @@ const AddMovieData = ({ data }: { data?: Movie }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setsubmit(true);
 
     const formData = new FormData();
     formData.append("title", movieData.title);
@@ -54,7 +56,7 @@ const AddMovieData = ({ data }: { data?: Movie }) => {
     if (movieData.image) {
       formData.append("image", movieData.image as File);
     }
-    if(data){
+    if (data) {
       formData.append("id", data.id);
     }
     // Sending FormData to the server
@@ -78,6 +80,8 @@ const AddMovieData = ({ data }: { data?: Movie }) => {
       toast.error(
         `${data ? "Failed to update movie" : "Failed to create movie"}`
       );
+    } finally {
+      setsubmit(false);
     }
   };
 
@@ -146,7 +150,7 @@ const AddMovieData = ({ data }: { data?: Movie }) => {
 
             <span></span>
             <SubmitButton
-              label="Submit"
+              label={submit ? "submitting" : "submit"}
               variant="primary"
               classbtn="!px-[60px] md:!px-[53px] lg:!px-[55px] !py-[16px] !h-[unset] !w-[unset]"
             />
