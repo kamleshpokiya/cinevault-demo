@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        {/* <Script src="https://cdn.tailwindcss.com"></Script> */}
+        <Script src="https://cdn.tailwindcss.com"></Script>
 
         <body className={montserrat.className}>
           <ToastContainer />
